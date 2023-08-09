@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -eux
+
 git clone https://github.com/venkaDaria/puzzle15.git
 cd puzzle15
 sed -i 's@</modelVersion>@</modelVersion>\n    <packaging>war</packaging>@' pom.xml
