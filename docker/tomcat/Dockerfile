@@ -9,4 +9,5 @@ RUN --mount=type=cache,target=/var/cache/apk,sharing=locked \
     tar xf /tmp/tomcat.tar.gz --strip-components 1 --directory /opt/tomcat && \
     rm /opt/tomcat/webapps/* -rf
 EXPOSE 8080
+WORKDIR /opt/tomcat
 CMD [ "/opt/tomcat/bin/catalina.sh", "run" ]
