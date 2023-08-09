@@ -1,6 +1,7 @@
-FROM eclipse-temurin:8-jre-alpine
+FROM alpine:3.18
 RUN --mount=type=cache,target=/var/cache/apk,sharing=locked \
     apk update && \
+    apk add openjdk8 && \
     apk add maven && \
     apk add git && \
     mkdir -p /opt/tomcat/webapps
