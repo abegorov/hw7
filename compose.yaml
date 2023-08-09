@@ -1,0 +1,36 @@
+---
+services:
+  maven_puzzle15:
+    image: abegorov/maven-puzzle15
+    build: docker/maven-puzzle15
+    container_name: maven-puzzle15
+    volumes:
+      - type: volume
+        source: tomcat-webapps
+        target: /opt/tomcat/webapps
+        volume:
+          nocopy: true
+    restart: no
+
+  tomcat:
+    image: abegorov/tomcat
+    build: docker/tomcat
+    container_name: tomcat-puzzle15
+    depends_on:
+      maven_puzzle15:
+        condition: service_completed_successfully
+        required: true
+    ports:
+      - target: 8080
+        published: 80
+        protocol: tcp
+        mode: host
+    volumes:
+      - type: volume
+        source: tomcat-webapps
+        target: /opt/tomcat/webapps
+        volume:
+          nocopy: true
+
+volumes:
+  tomcat-webapps:
