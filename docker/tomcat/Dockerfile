@@ -4,6 +4,7 @@ ADD https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.78/bin/apache-tomcat-9.0.78.ta
 RUN --mount=type=cache,target=/var/cache/apk,sharing=locked \
     apk update && \
     apk add openjdk8-jre-base && \
+    mkdir -p /opt/tomcat && \
     tar xf tomcat.tar.gz --strip-components 1 --directory /opt/tomcat && \
     rm /opt/tomcat/webapps/* -rf
 EXPOSE 8080
