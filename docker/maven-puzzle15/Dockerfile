@@ -11,6 +11,8 @@ COPY --link <<-EOT /usr/local/bin/start-build.sh
     git clone https://github.com/venkaDaria/puzzle15.git
     cd puzzle15
     sed -i 's@</modelVersion>@</modelVersion>\n    <packaging>war</packaging>@' pom.xml
+    mvn clean
+    mvn package
     cp target/Puzzle15-1.0-SNAPSHOT.war /opt/tomcat/webapps/puzzle15.war
 EOT
 CMD [ "/bin/sh", "/usr/local/bin/start-build.sh" ]
